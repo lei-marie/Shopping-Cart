@@ -110,16 +110,20 @@ const Products = (props) => {
   };
   const deleteCartItem = (deleteIndex) => {
     let newCart = cart.filter((item, i) => deleteIndex != i);
-  
+    let target = cart.filter((item, index) => deleteIndex == index);
+    let newItems = items.map((item, index) => {
+      if (item.name == target[0].name) item.instock = item.instock + 1;
+      return item;
+    });
     setCart(newCart);
-   
+    setItems(newItems);
   };
   
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
 
   let list = items.map((item, index) => {
-   // let n = index + 1049;
-    //let url = "https://picsum.photos/id/" + n + "/50/50";
+  //  let n = index + 1049;
+  //  let url = "https://picsum.photos/" + n + "/50/50";
 
     return (
       <li key={index}>
